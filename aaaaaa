@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript 7カテゴリ練習</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 700px;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 10px;
+      padding: 10px;
+      background: #eee;
+      min-height: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>JavaScript 7カテゴリ練習</h1>
+
+
+  <!-- ① 動きをつける -->
+  <div class="box">
+
+    <h2>🟦 ① 動きをつける</h2>
+
+    <button id="btn">
+      ボタンを押す
+    </button>
+
+  </div>
+
+
+  <!-- ② HTMLを書き換える -->
+  <div class="box">
+
+    <h2>🟩 ② HTMLを書き換える</h2>
+
+    <p id="msg">
+      ここが変わります
+    </p>
+
+    <button id="changeBtn">
+      勝利！
+    </button>
+
+  </div>
+
+
+  <!-- ③ 計算する -->
+  <div class="box">
+
+    <h2>🟥 ③ 計算する</h2>
+
+    <button id="calcBtn">
+      10 + 20 を計算
+    </button>
+
+    <div id="calcResult" class="result"></div>
+
+  </div>
+
+
+  <!-- ④ 条件分岐 -->
+  <div class="box">
+
+    <h2>🟧 ④ 条件分岐</h2>
+
+    <p>HP：<span id="hp">100</span></p>
+
+    <button id="damageBtn">
+      ダメージを受ける
+    </button>
+
+    <div id="hpResult" class="result"></div>
+
+  </div>
+
+
+  <!-- ⑤ 繰り返し -->
+  <div class="box">
+
+    <h2>🟪 ⑤ 繰り返し</h2>
+
+    <button id="loopBtn">
+      0～9を表示
+    </button>
+
+    <div id="loopResult" class="result"></div>
+
+  </div>
+
+
+  <!-- ⑥ 配列・Set -->
+  <div class="box">
+
+    <h2>🟫 ⑥ 配列・Setで情報管理</h2>
+
+    <button id="itemBtn">
+      アイテムを追加
+    </button>
+
+    <div id="itemResult" class="result"></div>
+
+  </div>
+
+
+  <!-- ⑦ 非同期処理 -->
+  <div class="box">
+
+    <h2>⭐ ⑦ 非同期処理</h2>
+
+
+    <h3>時間待ち</h3>
+
+    <button id="waitBtn">
+      1秒待つ
+    </button>
+
+    <div id="waitResult" class="result"></div>
+
+
+    <h3>async / await</h3>
+
+    <button id="asyncBtn">
+      1秒待って表示
+    </button>
+
+    <div id="asyncResult" class="result"></div>
+
+  </div>
+
+
+  <script>
+
+    // =================================
+    // ① 動きをつける
+    // =================================
+
+    document.getElementById("btn").onclick = function() {
+
+      alert("押された！");
+
+    };
+
+
+    // =================================
+    // ② HTMLを書き換える
+    // =================================
+
+    
+  document.getElementById("changeBtn").onclick = function() {
+
+    let msg = document.getElementById("msg");
+
+    if (msg.textContent === "ここが変わります") {
+
+      msg.textContent = "変わったよ(/・ω・)/";
+
+    } else {
+
+      msg.textContent = "ここが変わります";
+
+    }
+
+  };
+
+
+    // =================================
+    // ③ 計算する
+    // =================================
+
+    document.getElementById("calcBtn").onclick = function() {
+
+      let x = 10 + 20;
+
+      document.getElementById("calcResult").textContent = x;
+
+    };
+
+
+    // =================================
+    // ④ 条件分岐
+    // =================================
+
+    let hp = 100;
+
+    document.getElementById("damageBtn").onclick = function() {
+
+      hp = hp - 30;
+
+      document.getElementById("hp").textContent = hp;
+
+
+      if (hp <= 0) {
+
+        document.getElementById("hpResult").textContent =
+          "ゲームオーバー";
+
+      } else {
+
+        document.getElementById("hpResult").textContent =
+          "まだ戦える！";
+
+      }
+
+    };
+
+
+    // =================================
+    // ⑤ 繰り返し
+    // =================================
+
+    document.getElementById("loopBtn").onclick = function() {
+
+      let result = "";
+
+
+      for (let i = 0; i < 10; i++) {
+
+        result = result + i + " ";
+
+      }
+
+
+      document.getElementById("loopResult").textContent = result;
+
+    };
+
+
+    // =================================
+    // ⑥ 配列・Set
+    // =================================
+
+    let items = new Set();
+
+
+    document.getElementById("itemBtn").onclick = function() {
+
+    
+
+items.add("剣");
+items.add("盾");
+items.add("道具");
+
+
+      document.getElementById("itemResult").textContent =
+        [...items];
+
+    };
+
+
+    // =================================
+    // ⑦ 非同期処理
+    // =================================
+
+    // 時間待ち
+
+    document.getElementById("waitBtn").onclick = function() {
+
+      document.getElementById("waitResult").textContent =
+        "待っています...";
+
+
+      setTimeout(function() {
+
+        document.getElementById("waitResult").textContent =
+          "実行完了!(^^)";
+
+      }, 1000);
+
+    };
+
+
+    // =================================
+    // async / await
+    // =================================
+
+    document.getElementById("asyncBtn").onclick = async function() {
+
+      document.getElementById("asyncResult").textContent =
+        "待っています...";
+
+
+      await new Promise(function(resolve) {
+
+        setTimeout(resolve, 1000);
+
+      });
+
+
+      document.getElementById("asyncResult").textContent =
+        "表示されました( ｀ー´)ノ";
+
+    };
+
+  </script>
+
+</body>
+</html>
